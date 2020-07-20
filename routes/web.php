@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Rutas de vacantes
 Route::get('/vacantes','VacanteController@index')->name('vacante.index');
+Route::get('/vacantes/create','VacanteController@create')->name('vacante.create');
+
+
+//Subir imagenes
+Route::post('/vacantes/imagen', 'VacanteController@imagen')->name('vacantes.imagen');

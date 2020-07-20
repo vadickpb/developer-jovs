@@ -15,9 +15,15 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    
 
+    @yield('styles')
+    
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
+
 </head>
 <body class="bg-gray-200 min-h-screen leading-none">
     <div id="app">
@@ -53,9 +59,17 @@
             </div>
         </nav>
 
+        <div class="bg-gray-700">
+            <nav class="container mx-auto flex space-x-1">
+                @yield('navegacion')
+            </nav>
+        </div>
+
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+
+    @yield('scripts')
 </body>
 </html>
