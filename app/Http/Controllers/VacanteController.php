@@ -18,7 +18,7 @@ class VacanteController extends Controller
     public function __construct()
     {
         //Verificar que el usuario este autenticado y verificado
-        $this->middleware(['auth', 'verified']);
+        
     }
     /**
      * Display a listing of the resource.
@@ -28,10 +28,9 @@ class VacanteController extends Controller
     public function index()
     {
         /* $vacantes = auth()->user()->vacantes; */
-        $usuarios = User::where('id', 1)->paginate(1);
-        $vacantes = Vacante::where('user_id', auth()->user()->id)->Paginate(3);
+        $vacantes = Vacante::where('user_id', auth()->user()->id)->simplePaginate(3);
         
-        return view('vacantes.index', compact('vacantes', 'usuarios'));
+        return view('vacantes.index', compact('vacantes'));
     }
 
     /**
@@ -80,7 +79,7 @@ class VacanteController extends Controller
         //Almacebar en la bd
         auth()->user()->vacantes()->create([
             'titulo' => $data['titulo'],
-            'imagen' => $data['categoria'],
+            'imagen' => $data['imagen'],
             'descripcion' => $data['descripcion'],
             'skills' => $data['skills'],
             'categoria_id' => $data['categoria'],
@@ -91,10 +90,6 @@ class VacanteController extends Controller
         ]);
 
         return redirect()->action('VacanteController@index');
-
-
-
-        return "desde vacantes store";
     }
 
     /**
@@ -106,6 +101,7 @@ class VacanteController extends Controller
     public function show(Vacante $vacante)
     {
         //
+        return view('vacantes.show')->with('vacante', $vacante);
     }
 
     /**
