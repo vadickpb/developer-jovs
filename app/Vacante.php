@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Vacante extends Model
 {
     protected $fillable = [
-        
+
         'titulo', 'imagen', 'descripcion', 'skills', 'activa', 'categoria_id', 'experiencia_id', 'ubicacion_id', 'salario_id'
     ];
 
@@ -40,5 +40,11 @@ class Vacante extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    
+
+    //relacion de uno a muchos una vacante tiene muchos candidatos
+    public function candidato()
+    {
+        return $this->hasMany(Candidato::class);
+    }
+
 }
