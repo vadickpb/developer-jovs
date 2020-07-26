@@ -2,7 +2,7 @@
 
 @section('styles')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" />
-    
+
 @endsection
 
 @section('content')
@@ -28,7 +28,7 @@
             </p>
 
             <h2 class="text-2xl text-center mt-10 text-gray-700 mb-10">Conocimientos y Tecnologías</h2>
-            
+
             @php
                 $arraySkills = explode(",", $vacante->skills)
             @endphp
@@ -49,10 +49,8 @@
 
         </div>
 
-        <aside class="md:w-2/5">
-        2
-        </aside>
-        
+        @include('ui.contacto')
+
     </div>
 
 @endsection
