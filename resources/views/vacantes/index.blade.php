@@ -17,7 +17,7 @@
                     <tr>
                         <th
                             class="px-6 py-3 border-b border-gray-200  text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
-                            Titulo Vacante 
+                            Titulo Vacante
                         </th>
                         <th
                             class="px-6 py-3 border-b border-gray-200  text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
@@ -33,14 +33,14 @@
                         </th>
                     </tr>
                 </thead>
-                
+
                 <tbody class="bg-white">
                     @foreach ($vacantes as $vacante)
                     <tr>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                             <div class="flex items-center">
 
-                                <div class="ml-4"> 
+                                <div class="ml-4">
                                     <div class="text-sm leading-5 font-medium text-gray-900">{{ $vacante->titulo }}</div>
                                     <div class="text-sm leading-5 text-gray-500">Categoria: {{ $vacante->categoria->nombre }} </div>
                                 </div>
@@ -53,7 +53,7 @@
                         </td>
                         <td
                             class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                            <a href="" class="text-gray-500 hover:text-gray-600"> Candidatos</a>
+                            <a href="{{ route('candidatos.index',['id' => $vacante->id]) }}" class="text-gray-500 hover:text-gray-600">{{ $vacante->candidatos->count() }} Candidatos</a>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium">
                             <a href="#" class="text-teal-600 hover:text-teal-900 mr-5">Editar</a>
@@ -73,7 +73,7 @@
 {{ $vacantes->links() }}
 
 @else
-   <p class="text-center mt-10 text-gray-700">No tienes vacantes aun</p> 
+   <p class="text-center mt-10 text-gray-700">No tienes vacantes aun</p>
 @endif
 
 @endsection
