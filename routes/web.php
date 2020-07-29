@@ -35,9 +35,13 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
     //Subir imagenes
     Route::post('/vacantes/imagen', 'VacanteController@imagen')->name('vacantes.imagen');
     Route::post('/vacantes/borrarimagen', 'VacanteController@borrarimagen')->name('vacantes.borrar');
+
+    //Notificaciones
+    Route::get('/notificaciones', 'NotificacionesController')->name('notificaciones');
 });
 
 //Enviar datos para una vacante
+Route::get('/candidatos/{id}', 'CandidatoController@index')->name('candidatos.index');
 Route::post('/candidatos/store', 'CandidatoController@store')->name('candidatos.store');
 
 //Muestra trabajos en el front end sin autenticacion

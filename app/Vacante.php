@@ -42,7 +42,7 @@ class Vacante extends Model
     }
 
     //relacion de uno a muchos una vacante tiene muchos candidatos
-    public function candidato()
+    public function candidatos()
     {
         return $this->hasMany(Candidato::class);
     }

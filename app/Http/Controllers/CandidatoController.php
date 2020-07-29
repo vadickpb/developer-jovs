@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Vacante;
 use App\Candidato;
+use App\Notifications\NuevoCandidato;
 use Illuminate\Http\Request;
 
 class CandidatoController extends Controller
@@ -13,9 +14,15 @@ class CandidatoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $id_vacante = $request->route('id');
+
+        //Obetener los candidatos y la vacante
+        $vacante = Vacante::findOrfail($id_vacante);
+
+        return view('candidatos.index', compact('vacante'));
     }
 
     /**
@@ -58,11 +65,14 @@ class CandidatoController extends Controller
 
         $vacante = Vacante::find($data['vacante_id']);
 
-        $vacante->candidato()->create([
+        $vacante->candidatos()->create([
             'nombre' => $data['nombre'],
             'email' => $data['email'],
             'cv' => $nombreArchivo
         ]);
+
+        $reclutador = $vacante->reclutador;
+        $reclutador->notify(new NuevoCandidato( $vacante->titulo, $vacante->id));
 
 
         return back()->with('estado', 'Tus datos se enviaron correctamente, Suerte');
