@@ -136,6 +136,11 @@ class VacanteController extends Controller
     public function destroy(Vacante $vacante)
     {
         //
+
+        /* return response()->json($vacante); */
+        $vacante->delete();
+
+        return response()->json(['mensaje' => 'Se elimino la vacante'.$vacante->titulo]);
     }
 
     public function imagen(Request $request)
