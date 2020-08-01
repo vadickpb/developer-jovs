@@ -17,10 +17,14 @@ class CandidatoController extends Controller
     public function index(Request $request)
     {
         //
+
+
         $id_vacante = $request->route('id');
 
         //Obetener los candidatos y la vacante
         $vacante = Vacante::findOrfail($id_vacante);
+
+        $this->authorize('view', $vacante);
 
         return view('candidatos.index', compact('vacante'));
     }
