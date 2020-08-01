@@ -5,6 +5,10 @@
 
 @endsection
 
+@section('navegacion')
+    @include('ui.categoriasnav')
+@endsection
+
 @section('content')
     <h1 class="text-2xl text-center mt-10">{{ $vacante->titulo }}</h1>
 
@@ -49,7 +53,9 @@
 
         </div>
 
-        @include('ui.contacto')
+        @if ($vacante->activa === 1)
+            @include('ui.contacto')
+        @endif
 
     </div>
 
